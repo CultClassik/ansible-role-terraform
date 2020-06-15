@@ -17,3 +17,5 @@ plugin_path:
   Darwin: "/Users/{{ user_id }}/.terraform.d/plugins"
   Debian: "/home/{{ user_id }}/.terraform.d/plugins"
   Windows: "c:/Users/{{ user_id }}/.terraform.d/plugins"
+
+tf_dl_url: "https://releases.hashicorp.com/terraform/{{ tf_install_version }}/terraform_{{ tf_install_version }}"

@@ -1,11 +1,5 @@
 ---
-- name: Installing apt Packages (Terraform)
-  apt:
-    pkg: "{{ packages }}"
-    state: present
-
-- name: Installing apt Packages (Terraform)
-  apt:
-    pkg: "{{ dev_tools.debian }}"
-    state: present
-    when: "install_dev_tools == true"
+- name: Download Terraform binary
+  get_url:
+    url: "{{ tf_download_url }}_linux_amd64.zip"
+    dest: /tmp
