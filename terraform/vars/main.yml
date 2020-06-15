@@ -1,2 +1,19 @@
 ---
-# vars file for terraform
+user_id:
+
+packages:
+- terraform
+- tflint
+#- terraform-inventory
+
+dev_tools:
+  darwin:
+  - go
+  debian:
+  windows:
+  - goloang
+
+plugin_path:
+  Darwin: "/Users/{{ user_id }}/.terraform.d/plugins"
+  Debian: "/home/{{ user_id }}/.terraform.d/plugins"
+  Windows: "c:/Users/{{ user_id }}/.terraform.d/plugins"

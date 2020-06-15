@@ -1,0 +1,13 @@
+---
+- name: Install Chocolatey packages (Terraform)
+  win_chocolatey:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ packages }}"
+
+- name: Install Chocolatey packages (Terraform Dev Tools)
+  win_chocolatey:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ dev_tools.windows }}"
+  when: "install_dev_tools == true"

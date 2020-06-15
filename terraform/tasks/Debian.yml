@@ -1,0 +1,11 @@
+---
+- name: Installing apt Packages (Terraform)
+  apt:
+    pkg: "{{ packages }}"
+    state: present
+
+- name: Installing apt Packages (Terraform)
+  apt:
+    pkg: "{{ dev_tools.debian }}"
+    state: present
+    when: "install_dev_tools == true"
