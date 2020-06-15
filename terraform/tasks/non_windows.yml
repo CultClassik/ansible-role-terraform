@@ -40,7 +40,7 @@
     mode: "0774"
     state: link
 
-- name: Ensure Terraform plugins directory exists for user
+- name: Ensure Terraform plugins directory exists for user on *nix
   file:
     path: "{{ plugin_path }}.{{ ansible_system }}.path"
     state: directory
