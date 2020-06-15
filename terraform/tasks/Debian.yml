@@ -3,3 +3,29 @@
   get_url:
     url: "{{ tf_download_url }}_linux_amd64.zip"
     dest: /tmp
+
+- name: Extract Terraform binary to temp file
+  unarchive:
+    src: "/tmp/{{ tf_archive_prefix }}_linux_amd64.zip"
+    dest: /tmp
+
+- name: Delete Terraform archvie
+  file:
+    path: "/tmp/{{ tf_archive_prefix }}_linux_amd64.zip"
+    state: absent
+
+- name: Move Terraform binary
+  copy:
+    src: /tmp/terraform
+    dest: "/usr/local/bin/terraform{{ tf_download_version }}"
+
+- name: Delete Terraform binary temp file
+  file:
+    path: /tmp/terraform
+    state: absent
+
+- name: Create symlink for default Terraform binary version
+  file:
+    src: "/usr/local/bin/terraform{{ tf_download_version }}"
+    dest: "/usr/local/bin/terraform"
+    state: link
