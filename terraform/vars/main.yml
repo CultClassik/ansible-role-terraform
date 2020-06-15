@@ -11,7 +11,7 @@ dev_tools:
   windows:
   - goloang
 
-plugin_path:
+tf_plugin_path:
   Darwin: 
     path: "/Users/{{ user_id }}/.terraform.d/plugins"
     mode: 0750
