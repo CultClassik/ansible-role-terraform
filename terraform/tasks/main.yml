@@ -1,9 +1,6 @@
 ---
-- include: Debian.yml
-  when: ansible_os_family == 'Debian'
-
-- include: Darwin.yml
-  when: ansible_os_family == 'Darwin'
+- include: non_windows.yml
+  when: ansible_os_family != 'Windows'
 
 - include: Windows.yml
   when: ansible_os_family == 'Windows'
@@ -12,4 +9,4 @@
   file:
     path: "{{ plugin_path }}.{{ ansible_os_family }}"
     state: directory
-    mode: "0755"
+    mode: "0750"

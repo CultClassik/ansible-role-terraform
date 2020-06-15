@@ -16,5 +16,5 @@ plugin_path:
   Debian: "/home/{{ user_id }}/.terraform.d/plugins"
   Windows: "c:/Users/{{ user_id }}/.terraform.d/plugins"
 
-tf_archive_prefix: "terraform_{{ tf_install_version }}"
-tf_download_url: "https://releases.hashicorp.com/terraform/{{ tf_install_version }}/{{ tf_archive_prefix }}"
+tf_archive_name: "terraform_{{ tf_install_version }}_{{ ansible_os_family | lower }}_amd64.zip"
+tf_download_url: "https://releases.hashicorp.com/terraform/{{ tf_install_version }}/{{ tf_archive_name }}"

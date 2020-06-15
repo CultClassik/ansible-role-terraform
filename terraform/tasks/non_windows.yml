@@ -1,17 +1,17 @@
 ---
 - name: Download Terraform binary
   get_url:
-    url: "{{ tf_download_url }}_linux_amd64.zip"
+    url: "{{ tf_download_url }}"
     dest: /tmp
 
 - name: Extract Terraform binary to temp file
   unarchive:
-    src: "/tmp/{{ tf_archive_prefix }}_linux_amd64.zip"
+    src: "/tmp/{{ tf_archive_name }}"
     dest: /tmp
 
 - name: Delete Terraform archvie
   file:
-    path: "/tmp/{{ tf_archive_prefix }}_linux_amd64.zip"
+    path: "/tmp/{{ tf_archive_name }}"
     state: absent
 
 - name: Move Terraform binary
