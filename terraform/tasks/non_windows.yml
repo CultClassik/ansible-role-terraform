@@ -25,7 +25,7 @@
   copy:
     src: /tmp/terraform
     dest: "/usr/local/bin/terraform{{ tf_install_version }}"
-    mode: "0774"
+    mode: 774
   when: tf_bin_exists == False
 
 - name: Delete Terraform binary temp file
@@ -37,7 +37,7 @@
   file:
     src: "/usr/local/bin/terraform{{ tf_default_version }}"
     dest: "/usr/local/bin/terraform"
-    mode: "0774"
+    mode: 774
     state: link
 
 - name: Ensure Terraform plugins directory exists for user on *nix

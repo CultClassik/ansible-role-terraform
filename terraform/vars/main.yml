@@ -14,10 +14,10 @@ dev_tools:
 tf_plugin_path:
   Darwin: 
     path: "/Users/{{ user_id }}/.terraform.d/plugins"
-    mode: 0750
+    mode: 750
   Linux: 
     path: "/home/{{ user_id }}/.terraform.d/plugins"
-    mode: 0750
+    mode: 750
   Windows:
     path: "c:/Users/{{ user_id }}/.terraform.d/plugins"
 
