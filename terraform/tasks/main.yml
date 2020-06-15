@@ -2,11 +2,8 @@
 - include: non_windows.yml
   when: ansible_os_family != 'Windows'
 
+- include: Dawrin.yml
+  when: ansible_os_family == 'Darwin'
+
 - include: Windows.yml
   when: ansible_os_family == 'Windows'
-
-- name: Ensure Terraform plugins directory exists for user
-  file:
-    path: "{{ plugin_path }}.{{ ansible_system }}"
-    state: directory
-    mode: "0750"
