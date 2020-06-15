@@ -17,7 +17,7 @@
 - name: Move Terraform binary
   copy:
     src: /tmp/terraform
-    dest: "/usr/local/bin/terraform{{ tf_download_version }}"
+    dest: "/usr/local/bin/terraform{{ tf_install_version }}"
 
 - name: Delete Terraform binary temp file
   file:
@@ -26,6 +26,6 @@
 
 - name: Create symlink for default Terraform binary version
   file:
-    src: "/usr/local/bin/terraform{{ tf_download_version }}"
+    src: "/usr/local/bin/terraform{{ tf_default_version }}"
     dest: "/usr/local/bin/terraform"
     state: link
