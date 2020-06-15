@@ -20,7 +20,6 @@
   file:
     path: "/tmp/{{ tf_archive_name }}"
     state: absent
-  when: tf_bin_exists == False
 
 - name: Move Terraform binary
   copy:
@@ -33,7 +32,6 @@
   file:
     path: /tmp/terraform
     state: absent
-  when: tf_bin_exists == False
 
 - name: Create symlink for default Terraform binary version
   file:
