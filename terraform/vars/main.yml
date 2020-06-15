@@ -1,9 +1,4 @@
 ---
-user_id:
-install_dev_tools:
-tf_install_version:
-tf_default_version:
-
 packages:
 - terraform
 - tflint
