@@ -8,32 +8,32 @@
   get_url:
     url: "{{ tf_download_url }}"
     dest: /tmp
-  when: tf_bin_exists != true
+  when: tf_bin_exists == False
 
 - name: Extract Terraform binary to temp file
   unarchive:
     src: "/tmp/{{ tf_archive_name }}"
     dest: /tmp
-  when: tf_bin_exists != true
+  when: tf_bin_exists == False
 
 - name: Delete Terraform archvie
   file:
     path: "/tmp/{{ tf_archive_name }}"
     state: absent
-  when: tf_bin_exists != true
+  when: tf_bin_exists == False
 
 - name: Move Terraform binary
   copy:
     src: /tmp/terraform
     dest: "/usr/local/bin/terraform{{ tf_install_version }}"
     mode: "0774"
-  when: tf_bin_exists != true
+  when: tf_bin_exists == False
 
 - name: Delete Terraform binary temp file
   file:
     path: /tmp/terraform
     state: absent
-  when: tf_bin_exists != true
+  when: tf_bin_exists == False
 
 - name: Create symlink for default Terraform binary version
   file:
