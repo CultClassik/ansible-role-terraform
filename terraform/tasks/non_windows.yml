@@ -42,6 +42,6 @@
 
 - name: Ensure Terraform plugins directory exists for user on *nix
   file:
-    path: "{{ tf_plugin_path.[ansible_system].path }}"
+    path: "{{ tf_plugin_path[ansible_system].path }}"
     state: directory
-    mode: "{{ tf_plugin_path.[ansible_system].mode }}"
+    mode: "{{ tf_plugin_path[ansible_system].mode }}"
