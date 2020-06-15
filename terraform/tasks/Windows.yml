@@ -1,9 +1,14 @@
 ---
-- name: Install Chocolatey packages (Terraform)
+- name: Install Chocolatey package (Terraform)
   win_chocolatey:
-    name: "{{ item }}"
+    name: "terraform"
     state: present
-  with_items: "{{ packages }}"
+    version: "{{ tf_install_version }}"
+
+- name: Install Chocolatey package (Terraform - tflint)
+  win_chocolatey:
+    name: "tflint"
+    state: present
 
 - name: Install Chocolatey packages (Terraform Dev Tools)
   win_chocolatey:
