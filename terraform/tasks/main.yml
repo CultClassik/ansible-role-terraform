@@ -10,6 +10,6 @@
 
 - name: Ensure Terraform plugins directory exists for user
   file:
-    path: "{{ plugin_path[{{ ansible_os_family }}] }}"
+    path: "{{ plugin_path }}.{{ ansible_os_family }}"
     state: directory
     mode: "0755"
