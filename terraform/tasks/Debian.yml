@@ -18,6 +18,7 @@
   copy:
     src: /tmp/terraform
     dest: "/usr/local/bin/terraform{{ tf_install_version }}"
+    mode: "0774"
 
 - name: Delete Terraform binary temp file
   file:
@@ -28,4 +29,5 @@
   file:
     src: "/usr/local/bin/terraform{{ tf_default_version }}"
     dest: "/usr/local/bin/terraform"
+    mode: "0774"
     state: link
