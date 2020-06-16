@@ -16,7 +16,7 @@
     dest: /tmp
   when: tf_bin_check.stat.exists == False
 
-- name: Delete Terraform archvie
+- name: Delete Terraform archive
   file:
     path: "/tmp/{{ tf_archive_name }}"
     state: absent
