@@ -2,19 +2,19 @@
 - name: Terraform - Ensure version to be installed exists
   stat:
     path: "/usr/local/bin/terraform{{ tf_install_version }}"
-  register: tf_bin_exists
+  register: tf_bin_check
 
 - name: Download Terraform binary
   get_url:
     url: "{{ tf_download_url }}"
     dest: /tmp
-  when: tf_bin_exists == False
+  when: tf_bin_check.stat.exists == False
 
 - name: Extract Terraform binary to temp file
   unarchive:
     src: "/tmp/{{ tf_archive_name }}"
     dest: /tmp
-  when: tf_bin_exists == False
+  when: tf_bin_check.stat.exists == False
 
 - name: Delete Terraform archvie
   file:
@@ -26,7 +26,7 @@
     src: /tmp/terraform
     dest: "/usr/local/bin/terraform{{ tf_install_version }}"
     mode: 774
-  when: tf_bin_exists == False
+  when: tf_bin_check.stat.exists == False
 
 - name: Delete Terraform binary temp file
   file:
