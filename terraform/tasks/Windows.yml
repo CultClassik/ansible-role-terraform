@@ -22,7 +22,7 @@
 
 - name: Ensure Terraform plugins directory exists for user
   win_file:
-    path: "{{ tf_plugin_path[ansible_system].path }}"
+    path: "{{ tf_plugin_path[ansible_system].path }}"an 
     state: directory
 
 - name: Set perms on Terraform plugins directory exists for user on Windows
