@@ -1,6 +1,7 @@
 ---
 - include: non_windows.yml
   when: ansible_os_family != 'Windows'
+  become: yes
 
 - include: Darwin.yml
   when: ansible_os_family == 'Darwin'
