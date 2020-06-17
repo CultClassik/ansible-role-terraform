@@ -19,7 +19,7 @@ tf_plugin_path:
     path: "/home/{{ user_id }}/.terraform.d/plugins"
     mode: 750
   Windows:
-    path: "c:/Users/{{ user_id }}/.terraform.d/plugins"
+    path: "C:/Users/{{ user_id }}/AppData/Roaming/terraform.d/plugins"
 
 
 tf_archive_name: "terraform_{{ tf_install_version }}_{{ ansible_system | lower }}_amd64.zip"
