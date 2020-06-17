@@ -12,7 +12,7 @@
 
 - name: Extract Terraform binary to temp file
   unarchive:
-    src: "/tmp/{{ tf_archive_name }}"
+    remote_src: "/tmp/{{ tf_archive_name }}"
     dest: /tmp
   when: tf_bin_check.stat.exists == False
 
@@ -35,7 +35,7 @@
 
 - name: Create symlink for default Terraform binary version
   file:
-    src: "/usr/local/bin/terraform{{ tf_default_version }}"
+    remote_src: "/usr/local/bin/terraform{{ tf_default_version }}"
     dest: "/usr/local/bin/terraform"
     mode: 774
     state: link
