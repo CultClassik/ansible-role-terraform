@@ -24,9 +24,10 @@
 
 - name: Move Terraform binary
   copy:
-    remote_src: /tmp/terraform
+    src: /tmp/terraform
     dest: "/usr/local/bin/terraform{{ tf_install_version }}"
     mode: 774
+    remote_src: yes
   when: tf_bin_check.stat.exists == False
 
 - name: Delete Terraform binary temp file
@@ -36,7 +37,7 @@
 
 - name: Create symlink for default Terraform binary version
   file:
-    remote_src: "/usr/local/bin/terraform{{ tf_default_version }}"
+    src: "/usr/local/bin/terraform{{ tf_default_version }}"
     dest: "/usr/local/bin/terraform"
     mode: 774
     state: link
