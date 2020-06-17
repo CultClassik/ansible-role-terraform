@@ -12,8 +12,9 @@
 
 - name: Extract Terraform binary to temp file
   unarchive:
-    remote_src: "/tmp/{{ tf_archive_name }}"
+    src: "/tmp/{{ tf_archive_name }}"
     dest: /tmp
+    remote_src: yes
   when: tf_bin_check.stat.exists == False
 
 - name: Delete Terraform archive
