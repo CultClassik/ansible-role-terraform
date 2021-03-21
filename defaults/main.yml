@@ -1,0 +1,8 @@
+---
+user_id:
+install_dev_tools: false
+tf_versions: 
+- '0.12.29'
+- '0.13.5'
+- '0.14.7'
+tf_default_version: '0.14.7'

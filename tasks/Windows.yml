@@ -1,7 +1,7 @@
 ---
 - name: Install Chocolatey package (Terraform)
   win_chocolatey:
-    name: "terraform"
+    name: "{{ tf_versions }}"
     state: present
     version: "{{ tf_install_version }}"
 

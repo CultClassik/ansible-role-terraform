@@ -1,5 +1,0 @@
----
-user_id:
-install_dev_tools: false
-tf_install_version: '0.12.26'
-tf_default_version: "{{ tf_install_version }}"
