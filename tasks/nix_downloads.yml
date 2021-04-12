@@ -1,7 +1,7 @@
 ---
 - name: Terraform - Ensure version to be installed exists
   stat:
-    path: "/usr/local/bin/terraform{{ tf_version }}"
+    path: "/usr/local/bin/terraform-{{ tf_version }}"
   register: tf_bin_check
 
 - name: Download Terraform binary
