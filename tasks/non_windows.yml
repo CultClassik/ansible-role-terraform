@@ -14,7 +14,7 @@
   ansible.builtin.get_url:
     url: "https://releases.hashicorp.com/terraform/{{ item }}/terraform_{{ item }}_{{ ansible_system | lower }}_amd64.zip"
     dest: /tmp
-  loop: "{{ terraform.version }}"
+  loop: "{{ terraform.versions }}"
 
 - name: Extract Terraform binary
   unarchive:
@@ -22,7 +22,7 @@
     dest: "/usr/local/bin/terraform-{{ item }}"
     mode: 774
     remote_src: yes
-  loop: "{{ terraform.version }}"
+  loop: "{{ terraform.versions }}"
 
 # - name: Extract Terraform binary
 #   unarchive:
