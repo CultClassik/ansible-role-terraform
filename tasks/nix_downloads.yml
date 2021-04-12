@@ -10,7 +10,7 @@
     dest: /tmp
   when: tf_bin_check.stat.exists == False
 
-- name: Extract Terraform binary
+- name: "Extract Terraform binary {{ tf_version }}"
   unarchive:
     src: "/tmp/terraform_{{ tf_version }}_{{ ansible_system | lower }}_amd64.zip"
     dest: "/tmp"
