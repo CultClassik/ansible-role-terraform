@@ -1,29 +1,28 @@
 ---
-terraform:
-  user_id:
+tf_user_id:
 
-  install_dev_tools: false
+tf_install_dev_tools: false
 
-  versions: 
-    - '0.12.30'
-    - '0.13.6'
-    - "{{ terraform.default_version }}"
+tf_versions: 
+  - '0.12.30'
+  - '0.13.6'
+  - "{{ tf_default_version }}"
 
-  default_version: '0.14.10'
+tf_default_version: '0.14.10'
 
-  dev_tools:
-    darwin:
-      - go
-    debian:
-    windows:
-      - goloang
+tf_dev_tools:
+  darwin:
+    - go
+  debian:
+  windows:
+    - goloang
 
-  tf_plugin_path:
-    Darwin: 
-      path: "/Users/{{ terraform.user_id }}/.terraform.d/plugins"
-      mode: 750
-    Linux: 
-      path: "/home/{{ terraform.user_id }}/.terraform.d/plugins"
-      mode: 750
-    Windows:
-      path: "C:/Users/{{ terraform.user_id }}/AppData/Roaming/terraform.d/plugins"
+tf_plugin_path:
+  Darwin: 
+    path: "/Users/{{ tf_user_id }}/.tf_d/plugins"
+    mode: 750
+  Linux: 
+    path: "/home/{{ tf_user_id }}/.tf_d/plugins"
+    mode: 750
+  Windows:
+    path: "C:/Users/{{ tf_user_id }}/AppData/Roaming/tf_d/plugins"

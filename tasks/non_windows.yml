@@ -14,7 +14,7 @@
   ansible.builtin.get_url:
     url: "https://releases.hashicorp.com/terraform/{{ item }}/terraform_{{ item }}_{{ ansible_system | lower }}_amd64.zip"
     dest: /tmp
-  loop: "{{ terraform.versions }}"
+  loop: "{{ tf_versions }}"
 
 - name: Extract Terraform binary
   unarchive:
@@ -22,7 +22,7 @@
     dest: "/usr/local/bin/terraform-{{ item }}"
     mode: 774
     remote_src: yes
-  loop: "{{ terraform.versions }}"
+  loop: "{{ tf_versions }}"
 
 # - name: Extract Terraform binary
 #   unarchive:
@@ -54,13 +54,13 @@
 
 - name: Create symlink for default Terraform binary version
   ansible.builtin.file:
-    src: "/usr/local/bin/terraform{{ terraform.default_version }}"
+    src: "/usr/local/bin/terraform{{ tf_default_version }}"
     dest: "/usr/local/bin/terraform"
     mode: 774
     state: link
 
 - name: Ensure Terraform plugins directory exists for user on *nix
   ansible.builtin.file:
-    path: "{{ terraform.tf_plugin_path[ansible_system].path }}"
+    path: "{{ tf_plugin_path[ansible_system].path }}"
     state: directory
-    mode: "{{ terraform.tf_plugin_path[ansible_system].mode }}"
+    mode: "{{ tf_plugin_path[ansible_system].mode }}"

@@ -10,13 +10,13 @@
 
 #   tf_plugin_path:
 #     Darwin: 
-#       path: "/Users/{{ user_id }}/.terraform.d/plugins"
+#       path: "/Users/{{ user_id }}/.tf_d/plugins"
 #       mode: 750
 #     Linux: 
-#       path: "/home/{{ user_id }}/.terraform.d/plugins"
+#       path: "/home/{{ user_id }}/.tf_d/plugins"
 #       mode: 750
 #     Windows:
-#       path: "C:/Users/{{ user_id }}/AppData/Roaming/terraform.d/plugins"
+#       path: "C:/Users/{{ user_id }}/AppData/Roaming/tf_d/plugins"
 
 
 #   # tf_archive_name: "terraform_{{ tf_install_version }}_{{ ansible_system | lower }}_amd64.zip"
