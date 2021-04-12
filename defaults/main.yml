@@ -1,7 +1,7 @@
 ---
 terraform:
   user_id: "{{ ansible_env.username }}"
-  
+
   install_dev_tools: false
 
   versions: 
@@ -20,10 +20,10 @@ terraform:
 
   tf_plugin_path:
     Darwin: 
-      path: "/Users/{{ user_id }}/.terraform.d/plugins"
+      path: "/Users/{{ terraform.user_id }}/.terraform.d/plugins"
       mode: 750
     Linux: 
-      path: "/home/{{ user_id }}/.terraform.d/plugins"
+      path: "/home/{{ terraform.user_id }}/.terraform.d/plugins"
       mode: 750
     Windows:
-      path: "C:/Users/{{ user_id }}/AppData/Roaming/terraform.d/plugins"
+      path: "C:/Users/{{ terraform.user_id }}/AppData/Roaming/terraform.d/plugins"
