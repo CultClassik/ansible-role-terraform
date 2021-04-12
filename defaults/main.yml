@@ -1,6 +1,6 @@
 ---
 terraform:
-  user_id: "{{ ansible_env.username }}"
+  user_id:
 
   install_dev_tools: false
 
