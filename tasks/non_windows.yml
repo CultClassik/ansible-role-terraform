@@ -1,22 +1,36 @@
 ---
-- name: Terraform - Ensure version to be installed exists
-  stat:
-    path: "/usr/local/bin/terraform{{ tf_install_version }}"
-  register: tf_bin_check
+# - name: Terraform - Ensure version to be installed exists
+#   stat:
+#     path: "/usr/local/bin/terraform{{ tf_install_version }}"
+#   register: tf_bin_check
+
+# - name: Download Terraform binary
+#   get_url:
+#     url: "{{ tf_download_url }}"
+#     dest: /tmp
+#   when: tf_bin_check.stat.exists == False
 
 - name: Download Terraform binary
-  get_url:
-    url: "{{ tf_download_url }}"
+  ansible.builtin.get_url:
+    url: "https://releases.hashicorp.com/terraform/{{ item }}/terraform_{{ item }}_{{ ansible_system | lower }}_amd64.zip"
     dest: /tmp
-  when: tf_bin_check.stat.exists == False
+  loop: "{{ terraform.version }}"
 
 - name: Extract Terraform binary
   unarchive:
-    src: "/tmp/{{ tf_archive_name }}"
-    dest: "/usr/local/bin/terraform{{ tf_install_version }}"
+    src: "/tmp/terraform_{{ item }}_{{ ansible_system | lower }}_amd64.zip"
+    dest: "/usr/local/bin/terraform-{{ item }}"
     mode: 774
     remote_src: yes
-  when: tf_bin_check.stat.exists == False
+  loop: "{{ terraform.version }}"
+
+# - name: Extract Terraform binary
+#   unarchive:
+#     src: "/tmp/{{ tf_archive_name }}"
+#     dest: "/usr/local/bin/terraform{{ tf_install_version }}"
+#     mode: 774
+#     remote_src: yes
+#   when: tf_bin_check.stat.exists == False
 
 # - name: Extract Terraform binary to temp file
 #   unarchive:
@@ -33,20 +47,20 @@
 #     remote_src: yes
 #   when: tf_bin_check.stat.exists == False
 
-- name: Delete Terraform archive
-  file:
-    path: "/tmp/{{ tf_archive_name }}"
-    state: absent
+# - name: Delete Terraform archive
+#   file:
+#     path: "/tmp/{{ tf_archive_name }}"
+#     state: absent
 
 - name: Create symlink for default Terraform binary version
-  file:
-    src: "/usr/local/bin/terraform{{ tf_default_version }}"
+  ansible.builtin.file:
+    src: "/usr/local/bin/terraform{{ terraform.default_version }}"
     dest: "/usr/local/bin/terraform"
     mode: 774
     state: link
 
 - name: Ensure Terraform plugins directory exists for user on *nix
-  file:
-    path: "{{ tf_plugin_path[ansible_system].path }}"
+  ansible.builtin.file:
+    path: "{{ terraform.tf_plugin_path[ansible_system].path }}"
     state: directory
-    mode: "{{ tf_plugin_path[ansible_system].mode }}"
+    mode: "{{ terraform.tf_plugin_path[ansible_system].mode }}"

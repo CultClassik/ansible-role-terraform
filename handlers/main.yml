@@ -1,2 +1,20 @@
 ---
 # handlers file for terraform
+- name: Download Terraform binary
+  get_url:
+    url: "{{ tf_download_url }}"
+    dest: /tmp
+  when: tf_bin_check.stat.exists == False
+
+- name: Extract Terraform binary
+  unarchive:
+    src: "/tmp/{{ tf_archive_name }}"
+    dest: "/usr/local/bin/terraform{{ tf_install_version }}"
+    mode: 774
+    remote_src: yes
+  when: tf_bin_check.stat.exists == False
+
+- name: Delete Terraform archive
+  file:
+    path: "/tmp/{{ tf_archive_name }}"
+    state: absent

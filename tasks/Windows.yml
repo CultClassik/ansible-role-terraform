@@ -16,19 +16,19 @@
   win_chocolatey:
     name: "{{ item }}"
     state: present
-  with_items: "{{ dev_tools.windows }}"
-  when: "install_dev_tools == true"
+  with_items: "{{ terraform.dev_tools.windows }}"
+  when: "terraform.install_dev_tools == true"
 
 #- name: Download Terraform
 #  win_get_url:
 
 - name: Ensure Terraform plugins directory exists for user
   win_file:
-    path: "{{ tf_plugin_path[ansible_os_family].path }}"
+    path: "{{ terraform.tf_plugin_path[ansible_os_family].path }}"
     state: directory
 
 - name: Set perms on Terraform plugins directory exists for user on Windows
   win_acl_inheritance:
-    path: "{{ tf_plugin_path[ansible_os_family].path }}"
+    path: "{{ terraform.tf_plugin_path[ansible_os_family].path }}"
     state: present
     reorganize: yes
