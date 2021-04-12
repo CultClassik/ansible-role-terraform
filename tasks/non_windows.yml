@@ -10,29 +10,32 @@
     dest: /tmp
   when: tf_bin_check.stat.exists == False
 
-- name: Extract Terraform binary to temp file
+- name: Extract Terraform binary
   unarchive:
     src: "/tmp/{{ tf_archive_name }}"
-    dest: /tmp
-    remote_src: yes
-  when: tf_bin_check.stat.exists == False
-
-- name: Delete Terraform archive
-  file:
-    path: "/tmp/{{ tf_archive_name }}"
-    state: absent
-
-- name: Move Terraform binary
-  copy:
-    src: /tmp/terraform
     dest: "/usr/local/bin/terraform{{ tf_install_version }}"
     mode: 774
     remote_src: yes
   when: tf_bin_check.stat.exists == False
 
-- name: Delete Terraform binary temp file
+# - name: Extract Terraform binary to temp file
+#   unarchive:
+#     src: "/tmp/{{ tf_archive_name }}"
+#     dest: /tmp
+#     remote_src: yes
+#   when: tf_bin_check.stat.exists == False
+
+# - name: Move Terraform binary
+#   copy:
+#     src: /tmp/terraform
+#     dest: "/usr/local/bin/terraform{{ tf_install_version }}"
+#     mode: 774
+#     remote_src: yes
+#   when: tf_bin_check.stat.exists == False
+
+- name: Delete Terraform archive
   file:
-    path: /tmp/terraform
+    path: "/tmp/{{ tf_archive_name }}"
     state: absent
 
 - name: Create symlink for default Terraform binary version
