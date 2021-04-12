@@ -1,5 +1,5 @@
 ---
-- include: nix_downloads tf_version={{item}}
+- include: nix_downloads.yml tf_version={{item}}
   with_items: "{{ tf_versions }}"
 
 - name: Create symlink for default Terraform binary version
