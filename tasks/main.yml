@@ -3,7 +3,7 @@
   when: ansible_os_family == 'Debian'
   become: yes
   
-- include: non_windows.yml
+- include: nix.yml
   when: ansible_os_family != 'Windows'
   become: yes
 

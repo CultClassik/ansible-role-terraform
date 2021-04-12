@@ -1,0 +1,16 @@
+---
+- include: nix_downloads tf_version={{item}}
+  with_items: "{{ tf_versions }}"
+
+- name: Create symlink for default Terraform binary version
+  ansible.builtin.file:
+    src: "/usr/local/bin/terraform{{ tf_default_version }}"
+    dest: "/usr/local/bin/terraform"
+    mode: 774
+    state: link
+
+- name: Ensure Terraform plugins directory exists for user on *nix
+  ansible.builtin.file:
+    path: "{{ tf_plugin_path[ansible_system].path }}"
+    state: directory
+    mode: "{{ tf_plugin_path[ansible_system].mode }}"

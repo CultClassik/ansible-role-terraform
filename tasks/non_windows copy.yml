@@ -4,32 +4,37 @@
 #     path: "/usr/local/bin/terraform{{ tf_install_version }}"
 #   register: tf_bin_check
 
-# - name: Download Terraform binary
-#   get_url:
-#     url: "{{ tf_download_url }}"
-#     dest: /tmp
-#   when: tf_bin_check.stat.exists == False
-
 - name: Download Terraform binary
   ansible.builtin.get_url:
+    #url: "{{ tf_download_url }}"
     url: "https://releases.hashicorp.com/terraform/{{ item }}/terraform_{{ item }}_{{ ansible_system | lower }}_amd64.zip"
     dest: /tmp
   loop: "{{ tf_versions }}"
+  #when: tf_bin_check.stat.exists == False
 
-- name: Extract Terraform binary
-  unarchive:
-    src: "/tmp/terraform_{{ item }}_{{ ansible_system | lower }}_amd64.zip"
-    dest: "/usr/local/bin/terraform-{{ item }}"
-    mode: 774
-    remote_src: yes
-  loop: "{{ tf_versions }}"
+# - name: Download Terraform binary
+#   ansible.builtin.get_url:
+#     url: "https://releases.hashicorp.com/terraform/{{ item }}/terraform_{{ item }}_{{ ansible_system | lower }}_amd64.zip"
+#     dest: /tmp
+#   loop: "{{ tf_versions }}"
 
 # - name: Extract Terraform binary
 #   unarchive:
-#     src: "/tmp/{{ tf_archive_name }}"
-#     dest: "/usr/local/bin/terraform{{ tf_install_version }}"
+#     src: "https://releases.hashicorp.com/terraform/{{ item }}/terraform_{{ item }}_{{ ansible_system | lower }}_amd64.zip"
+#     dest: "/usr/local/bin/terraform-{{ item }}"
 #     mode: 774
 #     remote_src: yes
+#     creates: "/usr/local/bin/terraform-{{ item }}"
+#   loop: "{{ tf_versions }}"
+
+- name: Extract Terraform binaries
+  unarchive:
+    src: "/tmp/{{ tf_archive_name }}"
+    dest: "/usr/local/bin/terraform{{ tf_install_version }}"
+    mode: 774
+    remote_src: yes
+    creates: "/usr/local/bin/terraform-{{ item }}"
+  loop: "{{ tf_versions }}"
 #   when: tf_bin_check.stat.exists == False
 
 # - name: Extract Terraform binary to temp file

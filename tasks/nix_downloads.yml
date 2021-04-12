@@ -1,0 +1,32 @@
+---
+- name: Terraform - Ensure version to be installed exists
+  stat:
+    path: "/usr/local/bin/terraform{{ tf_version }}"
+  register: tf_bin_check
+
+- name: Download Terraform binary
+  ansible.builtin.get_url:
+    url: "https://releases.hashicorp.com/terraform/{{ tf_version }}/terraform_{{ tf_version }}_{{ ansible_system | lower }}_amd64.zip"
+    dest: /tmp
+  when: tf_bin_check.stat.exists == False
+
+- name: Extract Terraform binary
+  unarchive:
+    src: "/tmp/terraform_{{ tf_version }}_{{ ansible_system | lower }}_amd64.zip"
+    dest: "/usr/local/bin/terraform-{{ tf_version }}"
+    mode: 774
+    remote_src: yes
+    creates: "/usr/local/bin/terraform-{{ tf_version }}"
+
+- name: Move Terraform binary
+  copy:
+    src: /tmp/terraform
+    dest: "/usr/local/bin/terraform{{ tf_version }}"
+    mode: 774
+    remote_src: yes
+  #when: tf_bin_check.stat.exists == False
+
+- name: Delete Terraform archive
+  file:
+    path: "/tmp/terraform_{{ tf_version }}_{{ ansible_system | lower }}_amd64.zip"
+    state: absent
