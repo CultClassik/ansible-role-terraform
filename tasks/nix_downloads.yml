@@ -16,7 +16,8 @@
     dest: "/tmp"
     mode: 774
     remote_src: yes
-    creates: "/usr/local/bin/terraform-{{ tf_version }}"
+    #creates: "/usr/local/bin/terraform-{{ tf_version }}"
+  when: tf_bin_check.stat.exists == False
 
 - name: Move Terraform binary
   copy:
@@ -24,7 +25,7 @@
     dest: "/usr/local/bin/terraform-{{ tf_version }}"
     mode: 774
     remote_src: yes
-  #when: tf_bin_check.stat.exists == False
+  when: tf_bin_check.stat.exists == False
 
 - name: Delete Terraform archive
   file:
