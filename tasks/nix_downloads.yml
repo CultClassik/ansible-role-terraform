@@ -21,7 +21,7 @@
 - name: Move Terraform binary
   copy:
     src: /tmp/terraform
-    dest: "/usr/local/bin/terraform{{ tf_version }}"
+    dest: "/usr/local/bin/terraform-{{ tf_version }}"
     mode: 774
     remote_src: yes
   #when: tf_bin_check.stat.exists == False
