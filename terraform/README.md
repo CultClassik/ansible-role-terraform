@@ -1,4 +1,4 @@
-Role Name
+ansible-role-terraform
 =========
 
 Installs Terraform and configures system for use.
