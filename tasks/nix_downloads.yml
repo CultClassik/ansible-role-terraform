@@ -13,7 +13,7 @@
 - name: "Extract Terraform binary {{ tf_version }}"
   unarchive:
     src: "/tmp/terraform_{{ tf_version }}_{{ ansible_system | lower }}_amd64.zip"
-    dest: "/tmp"
+    dest: /tmp
     mode: 774
     remote_src: yes
     #creates: "/usr/local/bin/terraform-{{ tf_version }}"
@@ -24,6 +24,8 @@
     src: /tmp/terraform
     dest: "/usr/local/bin/terraform-{{ tf_version }}"
     mode: 774
+    owner: "{{ tf_user_id }}"
+    group: admin
     remote_src: yes
   when: tf_bin_check.stat.exists == False
 

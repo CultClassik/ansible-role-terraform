@@ -7,6 +7,8 @@
     src: "/usr/local/bin/terraform{{ tf_default_version }}"
     dest: "/usr/local/bin/terraform"
     mode: 774
+    owner: "{{ tf_user_id }}"
+    group: admin
     state: link
 
 - name: Ensure Terraform plugins directory exists for user on *nix
@@ -14,3 +16,5 @@
     path: "{{ tf_plugin_path[ansible_system].path }}"
     state: directory
     mode: "{{ tf_plugin_path[ansible_system].mode }}"
+    owner: "{{ tf_user_id }}"
+    group: admin
