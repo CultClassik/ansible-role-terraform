@@ -1,0 +1,9 @@
+---
+terraform:
+  user_id: {{ ansible_env.username }}
+  install_dev_tools: false
+  versions: 
+    - '0.12.30'
+    - '0.13.6'
+    - {{ terraform.default_version }}
+  default_version: '0.14.10'

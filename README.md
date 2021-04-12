@@ -2,7 +2,7 @@ ansible-role-terraform
 =========
 
 Installs Terraform and configures system for use.
-This will always install the binary with the name "terraform[tf_install_version].
+This will always install the binaries contained in list [terraform.versions].
 A symlink or shortcut named Terraform will be created that points to the [tf_default_version].
 This allows you to maintain multiple versions of the TF CLI when needed.
 

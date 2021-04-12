@@ -1,0 +1,7 @@
+---
+- name: Install Homebrew Package (tflint)
+  homebrew:
+    name: 
+      - tflint
+      - terragrunt
+    state: present

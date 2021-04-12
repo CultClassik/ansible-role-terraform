@@ -1,5 +1,0 @@
----
-- name: Install Homebrew Package (tflint)
-  homebrew:
-    name: "tflint"
-    state: "present"

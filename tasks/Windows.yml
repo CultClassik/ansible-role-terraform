@@ -1,13 +1,15 @@
 ---
 - name: Install Chocolatey package (Terraform)
   win_chocolatey:
-    name: "terraform"
+    name: "{{ tf_versions }}"
     state: present
     version: "{{ tf_install_version }}"
 
 - name: Install Chocolatey package (Terraform - tflint)
   win_chocolatey:
-    name: "tflint"
+    name:
+      - tflint
+      - terragrunt
     state: present
 
 - name: Install Chocolatey packages (Terraform Dev Tools)
