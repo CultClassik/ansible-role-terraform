@@ -14,7 +14,7 @@
   unarchive:
     src: "/tmp/terraform_{{ tf_version }}_{{ ansible_system | lower }}_amd64.zip"
     dest: /tmp
-    mode: 774
+    #mode: 774
     remote_src: yes
     #creates: "/usr/local/bin/terraform-{{ tf_version }}"
   when: tf_bin_check.stat.exists == False
