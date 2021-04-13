@@ -23,11 +23,20 @@
   copy:
     src: /tmp/terraform
     dest: "/usr/local/bin/terraform-{{ tf_version }}"
-    mode: o=rwx,u=rx,g=rx
+    # mode: o=rwx,u=rx,g=x
+    # owner: "{{ tf_user_id }}"
+    # group: admin
+    remote_src: yes
+  when: tf_bin_check.stat.exists == False
+
+- name: Set file permissions on Terraform binary
+  file:
+    state: file
+    path: "/usr/local/bin/terraform-{{ tf_version }}"
+    mode: o=rwx,u=rx,g=x
     owner: "{{ tf_user_id }}"
     group: admin
     remote_src: yes
-  when: tf_bin_check.stat.exists == False
 
 - name: Delete Terraform archive
   file:
