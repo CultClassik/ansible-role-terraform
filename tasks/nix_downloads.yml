@@ -1,6 +1,6 @@
 ---
 - name: Terraform - Ensure version to be installed exists
-  stat:
+  ansible.buitlin.stat:
     path: "/usr/local/bin/terraform-{{ tf_version }}"
   register: tf_bin_check
 
@@ -11,7 +11,7 @@
   when: tf_bin_check.stat.exists == False
 
 - name: "Extract Terraform binary {{ tf_version }}"
-  unarchive:
+  ansible.buitlin.unarchive:
     src: "/tmp/terraform_{{ tf_version }}_{{ ansible_system | lower }}_amd64.zip"
     dest: /tmp
     #mode: 774
@@ -20,14 +20,14 @@
   when: tf_bin_check.stat.exists == False
 
 - name: Move Terraform binary
-  copy:
+  ansible.buitlin.copy:
     src: /tmp/terraform
     dest: "/usr/local/bin/terraform-{{ tf_version }}"
     remote_src: yes
   when: tf_bin_check.stat.exists == False
 
 - name: Set file permissions on Terraform binary
-  file:
+  ansible.buitlin.file:
     state: file
     path: "/usr/local/bin/terraform-{{ tf_version }}"
     mode: u=rwx,g=rx,o=x
@@ -36,6 +36,6 @@
     remote_src: yes
 
 - name: Delete Terraform archive
-  file:
+  ansible.buitlin.file:
     path: "/tmp/terraform_{{ tf_version }}_{{ ansible_system | lower }}_amd64.zip"
     state: absent

@@ -10,6 +10,10 @@ tf_versions:
 
 tf_default_version: '0.14.10'
 
+tf_tools:
+  - tflint
+  - terragrunt
+
 tf_dev_tools:
   darwin:
     - go
