@@ -14,10 +14,9 @@
   ansible.builtin.unarchive:
     src: "/tmp/terraform_{{ tf_version }}_{{ ansible_system | lower }}_amd64.zip"
     dest: /tmp
-    #mode: 774
     remote_src: yes
-    #creates: "/usr/local/bin/terraform-{{ tf_version }}"
-  when: tf_bin_check.stat.exists == False
+    creates: "/usr/local/bin/terraform-{{ tf_version }}"
+  #when: tf_bin_check.stat.exists == False
 
 - name: Move Terraform binary
   ansible.builtin.copy:
@@ -33,7 +32,6 @@
     mode: u=rwx,g=rx,o=x
     owner: "{{ tf_user_id }}"
     group: admin
-    remote_src: yes
 
 - name: Delete Terraform archive
   ansible.builtin.file:
