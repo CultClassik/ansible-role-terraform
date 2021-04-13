@@ -23,7 +23,7 @@
   copy:
     src: /tmp/terraform
     dest: "/usr/local/bin/terraform-{{ tf_version }}"
-    mode: 774
+    mode: o=rwx,u=rx,g=rx
     owner: "{{ tf_user_id }}"
     group: admin
     remote_src: yes
