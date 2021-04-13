@@ -14,10 +14,10 @@ None.
 Role Variables
 --------------
 
-user_id: the user ID to configure Terraform for.
-install_dev_tools: [bool] If set to true, will install Golang. Defaults to false.
-tf_install_version: '0.12.26' Use this to specify the version you want to install.
-tf_default_version: "{{ tf_install_version }}" Use this to specify which will be default when you run `terraform` from the CLI. Defaults to the value of tf_install_version.
+tf_user_id: the user ID to configure Terraform for.
+tf_install_dev_tools: [bool] If set to true, will install Golang. Defaults to false.
+tf_versions: '0.12.26' Use this list to specify the version you want to install.
+tf_default_version: "0.13.5" Use this to specify which will be default when you run `terraform` from the CLI. Defaults to the value of tf_install_version.
 
 Dependencies
 ------------
