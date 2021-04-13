@@ -33,8 +33,8 @@ Example Playbook
     - include_role:
         name: terraform
       vars:
-        user_id: chris
-        tf_install_version: 0.12.26
+        tf_user_id: chris
+        tf_default_version: 0.12.26
 
 License
 -------
