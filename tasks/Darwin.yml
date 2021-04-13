@@ -2,7 +2,5 @@
 - name: Install Homebrew Package (tflint)
   become: false
   homebrew:
-    name: 
-      - tflint
-      - terragrunt
+    name: "{{ tf_tools }}"
     state: present
