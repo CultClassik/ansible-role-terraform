@@ -23,9 +23,6 @@
   copy:
     src: /tmp/terraform
     dest: "/usr/local/bin/terraform-{{ tf_version }}"
-    # mode: o=rwx,u=rx,g=x
-    # owner: "{{ tf_user_id }}"
-    # group: admin
     remote_src: yes
   when: tf_bin_check.stat.exists == False
 
@@ -33,7 +30,7 @@
   file:
     state: file
     path: "/usr/local/bin/terraform-{{ tf_version }}"
-    mode: o=rwx,u=rx,g=x
+    mode: u=rwx,g=rx,o=x
     owner: "{{ tf_user_id }}"
     group: admin
     remote_src: yes
