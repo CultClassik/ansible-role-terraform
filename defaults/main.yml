@@ -7,13 +7,15 @@ tf_versions:
   - '0.12.30'
   - '0.13.6'
   - '0.14.10'
+  - '0.15.5'
   - "{{ tf_default_version }}"
 
-tf_default_version: '0.15.0'
+tf_default_version: '1.0.0'
 
 tf_tools:
   - tflint
   - terragrunt
+  - terrascan
 
 tf_dev_tools:
   darwin:
