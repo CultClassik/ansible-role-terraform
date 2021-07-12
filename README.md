@@ -1,4 +1,4 @@
-ansible-role-terraform
+ansible-role-terraform [![Ansible Lint](https://github.com/CultClassik/ansible-role-terraform/actions/workflows/Ansible%20Lint.yml/badge.svg)](https://github.com/CultClassik/ansible-role-terraform/actions/workflows/Ansible%20Lint.yml)
 =========
 
 Installs Terraform and configures system for use.
