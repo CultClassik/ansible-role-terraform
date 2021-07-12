@@ -6,7 +6,7 @@
 
 - name: Download Terraform binary
   ansible.builtin.get_url:
-    url: "https://releases.hashicorp.com/terraform/{{ tf_version }}/terraform_{{ tf_version }}_{{ ansible_system | lower }}_amd64.zip"
+    url: "https://releases.hashicorp.com/terraform/{{ tf_version }}/terraform_{{ tf_version }}_{{ ansible_system | lower }}_{{ kctl_arch[ansible_architecture] }}.zip"
     dest: /tmp
   when: tf_bin_check.stat.exists == False
 
